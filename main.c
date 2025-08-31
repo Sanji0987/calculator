@@ -39,9 +39,12 @@ static void activate (GtkApplication *app, gpointer user_data){
 	widget_array[0] = gtk_button_new_with_label("0");
 	g_signal_connect (widget_array[0], "clicked", G_CALLBACK (print_hello), user_data);
 	gtk_grid_attach(GTK_GRID(grid), widget_array[0] ,0 , 0 , 100 , 100 );
+	
+	char str[1]; // {char , '\0'} 
 
 	for (int i = 1 ; i <  10 ; i++){
-		widget_array[i] = gtk_button_new_with_label("1");
+		str[0] = i + '0';
+		widget_array[i] = gtk_button_new_with_label(&(str[0]));
   		g_signal_connect (widget_array[i], "clicked", G_CALLBACK (print_hello), user_data);
 		gtk_grid_attach_next_to(GTK_GRID(grid), widget_array[i], widget_array[i-1], GTK_POS_RIGHT , 100 , 100 );
 	}	
